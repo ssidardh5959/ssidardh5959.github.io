@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeEzy - Learn to Code Effortlessly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --accent-dark: #e11d48;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --purple: #9333ea;
+            --pink: #ec4899;
+            --orange: #f97316;
+            --teal: #14b8a6;
+            --border-radius: 8px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 4px 6px rgba(244, 63, 94, 0.25);
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(244, 63, 94, 0.3);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-icon {
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: 'CE';
+            position: absolute;
+            background: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: -1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        .hero {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, #f8fafc, #dbeafe, #ede9fe);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title-gradient {
+            background: linear-gradient(to right, var(--primary), var(--purple), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat:nth-child(2) .stat-number {
+            background: linear-gradient(to right, var(--secondary), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat:nth-child(3) .stat-number {
+            background: linear-gradient(to right, var(--teal), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-text {
+            font-size: 0.875rem;
+            /* color: var(--gray); */
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.5s ease;
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        .hero-image:hover img {
+            transform: rotateY(0deg) rotateX(0deg);
+        }
+
+        /* Courses Section */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-bg-dots {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(var(--gray) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .top-right {
+            top: 0;
+            right: 0;
+        }
+
+        .bottom-left {
+            bottom: 0;
+            left: 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .course-image {
+            height: 180px;
+            background-color: #e2e8f0;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+
+        .course-level {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            z-index: 1;
+        }
+
+        .beginner {
+            background: linear-gradient(135deg, var(--success), var(--teal));
+        }
+
+        .intermediate {
+            background: linear-gradient(135deg, var(--warning), var(--orange));
+        }
+
+        .advanced {
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        .course-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .course-card:hover .course-title {
+            color: var(--primary);
+        }
+
+        .course-instructor {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .instructor-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            overflow: hidden;
+            position: relative;
+        }
+        .instructor-name {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .course-description {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .rating-stars {
+            color: var(--warning);
+        }
+
+        .course-price {
+            font-weight: 700;
+            color: var(--primary);
+            position: relative;
+        }
+
+        /* Categories Section */
+        .categories {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            overflow: visible;
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-python {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+        }
+
+        .icon-web {
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+        }
+
+        .icon-data {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        }
+
+        .icon-mobile {
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .category-card:hover .category-title {
+            color: var(--primary);
+        }
+
+        .category-count {
+            font-size: 0.875rem;
+            color: var(--gray);
+            position: relative;
+            display: inline-block;
+        }
+        .playground {
+            background: linear-gradient(135deg, #4338ca, #3b82f6, #0ea5e9);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .playground .section-title,
+        .playground .section-subtitle {
+            color: white;
+        }
+        .playground-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .playground-text {
+            flex: 1;
+        }
+
+        .playground-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .playground-description {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .playground-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            font-size: 1.25rem;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .playground-demo {
+            flex: 1;
+            background-color: #1e293b;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .playground-demo:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .demo-header {
+            background-color: #0f172a;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demo-title {
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .demo-title svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .demo-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .demo-tab {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .demo-tab.active {
+            background-color: #334155;
+        }
+
+        .demo-tab:hover:not(.active) {
+            background-color: rgba(51, 65, 85, 0.5);
+        }
+
+        .demo-content {
+            padding: 1.5rem;
+            min-height: 300px;
+            font-family: monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+
+        .code-sample {
+            color: #a5b4fc;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        .run-button {
+            background-color: var(--success);
+            color: white;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .run-button:hover {
+            background-color: #0d9488;
+            transform: translateY(-2px);
+        }
+
+        .run-button svg {
+            width: 16px;
+            height: 16px;
+        }
+        .testimonials {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .testimonials-content {
+            position: relative;
+        }
+
+        .testimonials-slider {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-quote {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        .control-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .control-button:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-description {
+            font-size: 1.125rem;
+        }
+        .img{
+            height:30px;
+            width: 30px;
+        }
+.footer {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  text-align: center;
+  padding: 50px 10px;
+  font-size: 19px;
+}
+.footer a {
+  color: #4da6ff;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">CE</div>
+                    CodeEzy
+                </a>
+                <div class="nav-links">
+                    <a href="COURSES.html" class="nav-link">Courses</a>
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="subscription.html" class="nav-link">Subscription</a>
+                    <a href="support.html" class="nav-link">Support</a>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <div class="mobile-menu">
+                    <div class="mobile-auth">
+                        <a href="login(pre).html" class="btn btn-secondary">Log In</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Learn to Code the Easy Way</h1>
+                    <p class="hero-subtitle">CodeEzy offers interactive coding courses taught by industry experts and a powerful playground to practice your skills.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Get Started</button>
+                        <a href="COURSES.html">
+                        <button class="btn btn-secondary">Explore Courses</button>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-text">Courses</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50k+</span>
+                            <span class="stat-text">Students</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-text">Languages</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Courses</h2>
+                <p class="section-subtitle">Explore our most popular courses and start learning in-demand skills in computer science and programming.</p>
+            </div>
+            <div class="courses-grid">
+                <div class="card course-card">
+                    <div class="course-image">
+                        <img src="https://www.dicslaxminagar.com/blog/wp-content/uploads/2024/06/0_pU8l4-u0s1flFQiU.png" alt="Python for Beginners">
+                        <div class="course-level">Beginner</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Python for Beginners</h3>
+                        <div class="course-instructor">
+                            <div class="instructor-avatar"></div>
+                            <span class="instructor-name">Sarah Johnson</span>
+                        </div>
+                        <p class="course-description">Learn Python programming from scratch. Perfect for beginners who want to start their coding journey.</p>
+                        <div class="course-meta">
+                            <div class="course-price">$49.99</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card course-card">
+                    <div class="course-image">
+                        <img src="https://www.shutterstock.com/image-illustration/web-development-coding-programming-responsive-260nw-1490541647.jpg" alt="Web Development Bootcamp">
+                        <div class="course-level">Intermediate</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Full-Stack Web Development</h3>
+                        <div class="course-instructor">
+                            <div class="instructor-avatar"></div>
+                            <span class="instructor-name">Michael Chen</span>
+                        </div>
+                        <p class="course-description">Master HTML, CSS, JavaScript, React, Node.js and MongoDB to become a full-stack developer.</p>
+                        <div class="course-meta">
+                            <div class="course-price">$89.99</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card course-card">
+                    <div class="course-image">
+                        <img src="https://i.pinimg.com/736x/e5/84/4c/e5844cb5f73edce2982fc72789d30030.jpg" alt="Data Science with Python">
+                        <div class="course-level">Advanced</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Science Fundamentals</h3>
+                        <div class="course-instructor">
+                            <div class="instructor-avatar"></div>
+                            <span class="instructor-name">Emily Rodriguez</span>
+                        </div>
+                        <p class="course-description">Learn data analysis, visualization, and machine learning with Python, Pandas, and scikit-learn.</p>
+                        <div class="course-meta">
+                            <div class="course-price">$79.99</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card course-card">
+                    <div class="course-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D12AQEj_skZvxBLHg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1697271137370?e=2147483647&v=beta&t=i67kZ1f9MKbxtAfTLlThSa2AQGhAkEASNQbBP_RTtLc" alt="Java Programming">
+                        <div class="course-level">Intermediate</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Java Programming Masterclass</h3>
+                        <div class="course-instructor">
+                            <div class="instructor-avatar"></div>
+                            <span class="instructor-name">David Wilson</span>
+                        </div>
+                        <p class="course-description">Comprehensive Java course covering core concepts, OOP, data structures, and advanced features.</p>
+                        <div class="course-meta">
+                            <div class="course-price">$69.99</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Browse By Category</h2>
+                <p class="section-subtitle">Explore our wide range of computer science and programming categories to find the perfect course for you.</p>
+            </div>
+            <div class="categories-grid">
+                <div class="card category-card">
+                    <div class="category-icon"><img src="https://i.pinimg.com/736x/dd/86/e1/dd86e167a140b312fff9f1a86ae2762e.jpg" class="img"></div>
+                    <h3 class="category-title">Python</h3>
+                </div>
+                <div class="card category-card">
+                    <div class="category-icon">🌐</div>
+                    <h3 class="category-title">Web Development</h3>
+                </div>
+                <div class="card category-card">
+                    <div class="category-icon">📊</div>
+                    <h3 class="category-title">Data Science</h3>
+                </div>
+                <div class="card category-card">
+                    <div class="category-icon">📱</div>
+                    <h3 class="category-title">Java</h3>
+                </div>    
+            </div>
+        </div>
+    </section>
+<footer class="footer">
+    <div class="footer-content">
+      <p>Join us on 
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>, 
+        <a href="https://facebook.com" target="_blank">Facebook</a>, and 
+        <a href="https://x.com" target="_blank">X</a>.
+      </p>
+    </div>
+  </footer>
+    <script>
+        document.querySelectorAll(".btn-primary").forEach(button => {
+    button.addEventListener("click", function() {
+        window.scrollBy({
+            top: 1800,
+            behavior: "smooth"
+        });
+    });
+});
+    </script>
+</body>
+</html>

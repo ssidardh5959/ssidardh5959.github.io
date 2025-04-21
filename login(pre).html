@@ -1,0 +1,183 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>CodeEzy - Sign Up</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 5px; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif;
+        }
+        :root { 
+            --primary: #6366f1; 
+            --primary-dark: #4f46e5; 
+            --accent: #f43f5e; 
+            --dark: #1e293b; 
+            --light: #f8fafc; 
+            --gray: #64748b; 
+            --border-radius: 8px; 
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+        } 
+        body { 
+            background: linear-gradient(135deg, #f8fafc, #dbeafe, #ede9fe); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        .signup-container { 
+            max-width: 400px; 
+            width: 100%; 
+            background: white; 
+            border-radius: var(--border-radius); 
+            box-shadow: var(--shadow); 
+            padding: 2rem; 
+            text-align: center; 
+            animation: fadeIn 0.5s ease-in-out; 
+        } 
+        .signup-title { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            margin-bottom: 10px; 
+        } 
+        .signup-subtitle { 
+            font-size: 1rem; 
+            color: var(--gray); 
+            margin-bottom: 1.5rem; 
+        } 
+        .form-group { 
+            text-align: left; 
+            margin-bottom: 1rem; 
+        } 
+        label { 
+            font-weight: 600; 
+            color: var(--dark); 
+        } 
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 5px; 
+            border: 1px solid var(--gray); 
+            border-radius: var(--border-radius); 
+            font-size: 1rem; 
+            transition: 0.3s; 
+        } 
+        input:focus { 
+            border-color: var(--primary); 
+            outline: none; 
+        }
+        .error-message { 
+            font-size: 0.875rem; 
+            color: var(--accent); 
+            display: none; 
+        }
+        .btn { 
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            color: white; 
+            border: none; 
+            border-radius: var(--border-radius); 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            box-shadow: var(--shadow); 
+        } 
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 10px rgba(99, 102, 241, 0.3); 
+        }
+        .switch-text { 
+            margin-top: 15px; 
+            font-size: 0.9rem; 
+            color: var(--gray); 
+        }
+        .switch-text a { 
+            color: var(--primary); 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .switch-text a:hover { 
+            color: var(--accent); 
+        } 
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .logo {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .password-requirements {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 4px;
+            text-align: left;
+        }
+        @media (max-width: 480px) {
+            .signup-container {
+                border-radius: 0;
+                box-shadow: none;
+                padding: 1.5rem;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            body {
+                background: white;
+            }
+        }
+    </style> 
+</head> 
+<body> 
+    <div class="signup-container"> 
+        <h1 class="signup-title">welcome back to CodeEzy</h1> 
+        <p class="signup-subtitle">login to your account and continue learning</p> 
+        <form id="signup-form"> 
+            <div class="form-group"> 
+                <label for="email">Email Address</label> 
+                <input type="email" id="email" name="email" required placeholder="Enter your email address.."> 
+                <p class="error-message" id="email-error">Please enter a valid email address</p> 
+            </div> 
+            <div class="form-group"> 
+                <label for="password">Password</label> 
+                <input type="password" id="password" name="password" required placeholder="Enter your password.."> 
+                <p class="error-message" id="password-error">password too short.</p> 
+            </div> 
+            <button type="submit" class="btn">Login</button>
+        </form> 
+        <p class="switch-text">New to CodeEzy? <a href="signup.html">register</a></p> 
+    </div> 
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.querySelectorAll('.error-message').forEach(function(element) {
+                element.style.display = 'none';
+            });
+            let hasError = false;
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email-error').style.display = 'block';
+                hasError = true;
+            }
+            const password = document.getElementById('password').value;
+            if (password.length < 8) {
+                document.getElementById('password-error').style.display = 'block';
+                hasError = true;
+            }
+            if (!hasError) {
+                alert("Login Successful!");
+                window.location.href = "capHOMEPAGE.html";
+            }
+        });
+    </script>
+</body> 
+</html>
